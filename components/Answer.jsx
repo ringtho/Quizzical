@@ -3,7 +3,6 @@ import React from "react"
 
 function Answer(props){
     const [status, setStatus] = React.useState(props.is_selected)
-    const [isCorrect, setIsCorrect] = React.useState(false)
 
     function checkAnswer(e){
         const styles = {
@@ -16,19 +15,21 @@ function Answer(props){
         }
     }
 
-    checkAnswer(window.event)
+    // checkAnswer(window.event)
 
-    function toggleSelect(e, id){
-        if(e.target.dataset.id === id){
-            setStatus(prevStatus => !prevStatus)
-        }
-    }
+    // function toggleSelect(e, id){
+    //     if(e.target.dataset.id === id){
+    //         setStatus(prevStatus => !prevStatus)
+    //     }
+    // }
+
+    // console.log(props.quiz_id)
 
     return (
         <div 
-            className={status ? "selected" : "answer" }
+            className={props.is_selected ? "selected" : "answer" }
             data-id={props.id} 
-            onClick={()=> toggleSelect(window.event, props.id)}>
+            onClick={()=> props.onclick(props.quiz_id, props.correct_answer)}>
             <p data-id={props.id}>{props.answer}</p>
         </div>
     )
