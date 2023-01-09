@@ -1,5 +1,6 @@
 import React from "react"
 import Quiz from "./components/Quiz"
+import { nanoid } from "nanoid"
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
 		let quizArray = []
 		for (let quiz of data.results){
 			const quizObject = {
-
+				id: nanoid(),
 				question: quiz.question,
 				answers : [...quiz.incorrect_answers, quiz.correct_answer],
 				correct_answer: quiz.correct_answer,
@@ -35,7 +36,10 @@ function App() {
 
 	}
 
-	const quizElements = quiz.map((item, index)=> <Quiz key={index} {...item} check={checkAnswers} />)
+	
+
+	const quizElements = quiz.map((item, index)=> 
+		<Quiz key={index} {...item} check={checkAnswers} />)
 
 	return (
 		<main className="main">

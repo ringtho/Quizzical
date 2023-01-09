@@ -2,18 +2,19 @@ import React from "react"
 
 
 function Answer(props){
-    const [status, setStatus] = React.useState(props.is_selected)
+    // console.log(props)
+    // const [status, setStatus] = React.useState(props.is_selected)
 
-    function checkAnswer(e){
-        const styles = {
-            backgroundColor: "#94D7A2"
-        }
-        if (status){
-            // document.querySelector(".selected").style = styles
-        } else {
-            console.log("Not selected")
-        }
-    }
+    // function checkAnswer(e){
+    //     const styles = {
+    //         backgroundColor: "#94D7A2"
+    //     }
+    //     if (status){
+    //         // document.querySelector(".selected").style = styles
+    //     } else {
+    //         console.log("Not selected")
+    //     }
+    // }
 
     // checkAnswer(window.event)
 
@@ -24,12 +25,13 @@ function Answer(props){
     // }
 
     // console.log(props.quiz_id)
+    
 
     return (
         <div 
             className={props.is_selected ? "selected" : "answer" }
             data-id={props.id} 
-            onClick={()=> props.onclick(props.quiz_id, props.correct_answer)}>
+            onClick={()=> props.onclick(window.event, props)}>
             <p data-id={props.id}>{props.answer}</p>
         </div>
     )
