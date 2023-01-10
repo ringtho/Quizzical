@@ -33,10 +33,7 @@ function App() {
 			console.log(selectedValue, correctAnswer)
 			console.log(true)
 		}
-
 	}
-
-	
 
 	const quizElements = quiz.map((item, index)=> 
 		<Quiz key={index} {...item} check={checkAnswers} />)

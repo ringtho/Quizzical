@@ -5,19 +5,6 @@ function Answer(props){
     // console.log(props)
     // const [status, setStatus] = React.useState(props.is_selected)
 
-    // function checkAnswer(e){
-    //     const styles = {
-    //         backgroundColor: "#94D7A2"
-    //     }
-    //     if (status){
-    //         // document.querySelector(".selected").style = styles
-    //     } else {
-    //         console.log("Not selected")
-    //     }
-    // }
-
-    // checkAnswer(window.event)
-
     // function toggleSelect(e, id){
     //     if(e.target.dataset.id === id){
     //         setStatus(prevStatus => !prevStatus)
