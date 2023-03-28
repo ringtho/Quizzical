@@ -2,6 +2,9 @@ import React from "react"
 
 
 function Answer(props){
+    const [status, setStatus] = React.useState(false)
+    // console.log(props)
+    // console.log(props.answer, props.correct_answer)
     // console.log(props)
     // const [status, setStatus] = React.useState(props.is_selected)
 
@@ -13,13 +16,20 @@ function Answer(props){
 
     // console.log(props.quiz_id)
     
+    function handleSelect(e){
+		if (e.target.id === props.id ){
+            setStatus(prevStatus => !prevStatus)
+        }
+	}
+    
 
+    // console.log(props)
     return (
         <div 
-            className={props.is_selected ? "selected" : "answer" }
-            data-id={props.id} 
-            onClick={()=> props.onclick(window.event, props)}>
-            <p data-id={props.id}>{props.answer}</p>
+            className={status ? "selected" : "answer" }
+            id={props.id} 
+            onClick={handleSelect}>
+            <p>{props.answer}</p>
         </div>
     )
 }

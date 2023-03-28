@@ -1,10 +1,15 @@
 import React from "react"
 import Quiz from "./components/Quiz"
 import { nanoid } from "nanoid"
+import { useDispatch, useSelector } from "react-redux"
+import { getQuestions } from "./redux/reducers"
 
 function App() {
 
 	const [quiz, setQuiz] = React.useState([])
+	const dispatch = useDispatch()
+	const { questions } = useSelector(state => state)
+	console.log(questions)
 	
 	function question(data){
 		let quizArray = []
@@ -13,8 +18,7 @@ function App() {
 				id: nanoid(),
 				question: quiz.question,
 				answers : [...quiz.incorrect_answers, quiz.correct_answer],
-				correct_answer: quiz.correct_answer,
-				incorrect_answers: quiz.incorrect_answers
+				correct_answer: quiz.correct_answer
 			}
 			quizArray.push(quizObject)
 		}
@@ -22,11 +26,14 @@ function App() {
 	}
 
 	React.useEffect(() => {
-		console.log("Effect rendered")
 		fetch(`https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple`)
 			.then(res => res.json())
-			.then(data => setQuiz(question(data)))
+			.then(data => {
+				setQuiz(question(data))
+				dispatch(getQuestions(question(data)))
+			})
 	},[])
+
 
 	function checkAnswers(selectedValue, correctAnswer){
 		if (selectedValue === correctAnswer){
